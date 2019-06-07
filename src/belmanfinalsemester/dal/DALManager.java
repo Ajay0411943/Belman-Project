@@ -12,7 +12,6 @@ import belmanfinalsemester.dal.DAO.EventLogDAO;
 import belmanfinalsemester.dal.DAO.OrderDAO;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.FileNotFoundException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author MockDALManager
  */
-public class DALManager {
+public class DALManager implements IDALFacade{
 
     private List<Order> orderInfo;
     private OrderDAO orderDAO;
@@ -41,23 +40,21 @@ public class DALManager {
         }
     }
 
-    public List<Order> getAllOrders(Department departmentName, LocalDate currentDate) {
-
-        List<Order> currentOrders = orderDAO.getAllOrdersFromDept(departmentName, currentDate);
-        return currentOrders;
-    }
-
+    @Override
     public List<Department> getDepartments() throws SQLException {
         return depDAO.getDepartment();
     }
 
+    @Override
     public List<Order> getOrders(Department departmentName, LocalDate currentDate) {
         List<Order> currentOrders = orderDAO.getOrders(departmentName, currentDate);
         return currentOrders;
     }
     
-     public void submitTask(Department dep, Order order, LocalDate currentDate) throws SQLServerException, SQLException {
+    @Override
+     public void submitTask(Department dep, Order order) throws SQLServerException, SQLException {
          orderDAO.submitTask(dep, order);
+         LocalDate currentDate = LocalDate.now();
          logEvent(order, dep, "Task submitted", currentDate);
      }
      
@@ -69,7 +66,4 @@ public class DALManager {
             Logger.getLogger(DALManager.class.getName()).log(Level.SEVERE, null, ex);
         }
      }
-     
-     
-     }
-
+}

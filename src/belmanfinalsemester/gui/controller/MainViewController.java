@@ -133,22 +133,6 @@ public class MainViewController implements Initializable {
 
     }
 
-//   public void setOrdersTable(String departmentName){
-//        tvOrders.setItems(mModel.getOrders(departmentName));
-//   }
-//    
-//        private void loadTableViewFXML() {
-//        try
-//        {
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/belmanfinalsemester/gui/view/OrderTableView.fxml"));
-//            Parent root = fxmlLoader.load();
-//            MainBorderPane.setCenter(root);
-//        }
-//        catch(IOException ex)
-//        {
-//            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
     @FXML
     private void dropDown(ActionEvent event) throws BelmanException, SQLException {
         int selectedDepartment = combobox.getSelectionModel().getSelectedIndex();
@@ -188,7 +172,6 @@ public class MainViewController implements Initializable {
 
             } catch (IOException ex) {
                 Logger.getLogger(OrderFullViewController.class.getName()).log(Level.SEVERE, null, ex);
-                //ex.printStackTrace();
             }
         }
     }
@@ -202,17 +185,11 @@ public class MainViewController implements Initializable {
         if (combobox.getSelectionModel().getSelectedItem() != null && txtFieldSearchBar.getText() != null) {
             if (!txtFieldSearchBar.getText().matches("[0.-9.]*")
                     && txtFieldSearchBar.getText().matches("^[a-zA-Z]*$")) {
-                MessageBoxHelper.displayError("Search by Order Number.");
-                txtFieldSearchBar.clear();
+                        MessageBoxHelper.displayError("Search by Order Number.");
+                        txtFieldSearchBar.clear();
             } else {
                 tvOrders.setItems(mModel.searchOrders(txtFieldSearchBar.getText()));
             }
-
-//
-//           else if(!txtFieldSearchBar.getText().matches("[0.-9.]*") && 
-//                        txtFieldSearchBar.getText().matches("^[a-zA-Z]*$")){
-//                 MessageBoxHelper.displayError("Search by Order Number.");
-//                 txtFieldSearchBar.clear();
         }
     }
 }

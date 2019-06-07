@@ -7,7 +7,7 @@ package belmanfinalsemester.bll;
 
 import belmanfinalsemester.be.Department;
 import belmanfinalsemester.be.Order;
-import belmanfinalsemester.dal.DALManager;
+import belmanfinalsemester.dal.IDALFacade;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -19,14 +19,19 @@ import java.util.List;
  *
  * @author Test
  */
-public class Facade {
+public class BLLManager implements IBLLFacade{
     
    // MockDALManager mcDalManager = new MockDALManager();
-    DALManager dalManager = new DALManager();
+    private IDALFacade dalFacade;
     
+    public BLLManager(IDALFacade dalFacade){
+        this.dalFacade = dalFacade;
+    }
+    
+    @Override
     public List<Order> getOrders (Department departmentName){
         LocalDate currentDate = LocalDate.now();
-        List<Order> orders =  dalManager.getOrders(departmentName,currentDate);
+        List<Order> orders =  dalFacade.getOrders(departmentName,currentDate);
         for(Order o : orders){
             double progress = calculateProgress(o);
             o.setProgress(progress);
@@ -48,6 +53,7 @@ public class Facade {
         }
     }
     
+    @Override
     public List<Order> searchOrders(List<Order> allOrders, String key){
         List<Order> filteredList = new ArrayList();
         for(Order order: allOrders){
@@ -58,11 +64,13 @@ public class Facade {
         return filteredList;
     }
     
+    @Override
     public List<Department> getDepartments() throws SQLException{
-        return dalManager.getDepartments();
+        return dalFacade.getDepartments();
     }
     
+    @Override
      public void submitTask(Department dep, Order order) throws SQLServerException, SQLException {
-         dalManager.submitTask(dep, order, LocalDate.now());
+         dalFacade.submitTask(dep, order);
      }
 }

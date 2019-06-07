@@ -54,7 +54,7 @@ public class OrderDAO {
                 allOrders.add(newOrder);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            //throw new Exception("Cannot connect to the database");
         }
 
         return allOrders;

@@ -5,7 +5,10 @@
  */
 package belmanfinalsemester.dal;
 
+import belmanfinalsemester.be.Department;
 import belmanfinalsemester.be.Order;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +17,11 @@ import java.util.List;
  *
  * @author MockDALManager
  */
-public class MockDALManager {
-    private List<Order> orderInfo;
-    
-    public List<Order> getOrders(){
+public class MockDALManager implements IDALFacade{
+    private List<Order> orderInfo;   
+
+    @Override
+    public List<Order> getOrders(Department departmentName, LocalDate currentDate) {
         Order o1 = new Order();
         o1.setOrderNumber("500-100-200-01");
         o1.setStartDate(LocalDate.now().minusDays(5));
@@ -37,5 +41,26 @@ public class MockDALManager {
          list1.add(o1);
          list1.add(o2);
          return list1;
-  }   
+    }
+
+    @Override
+    public List<Department> getDepartments() throws SQLException {
+        Department d1 = new Department();
+        d1.setDeptID(1);
+        d1.setDeptName("Halvfab");
+        
+        Department d2 = new Department();
+        d2.setDeptID(2);
+        d2.setDeptName("Montage 1");
+        
+        ArrayList<Department> list2 = new ArrayList();
+        list2.add(d1);
+        list2.add(d2);
+        return list2;
+    }
+
+    @Override
+    public void submitTask(Department dep, Order order) throws SQLServerException, SQLException {
+         
+    }
 }
