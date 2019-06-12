@@ -131,7 +131,7 @@ public class MainViewController implements Initializable {
         clmOrderNum.setCellValueFactory(new PropertyValueFactory("orderNumber"));
         clmStartDate.setCellValueFactory(new PropertyValueFactory("startDate"));
         clmEndDate.setCellValueFactory(new PropertyValueFactory("endDate"));
-        clmTimeLeft.setCellValueFactory(new PropertyValueFactory("timeLeft"));
+        clmTimeLeft.setCellValueFactory(new PropertyValueFactory("daysLeft"));
 
     }
 
