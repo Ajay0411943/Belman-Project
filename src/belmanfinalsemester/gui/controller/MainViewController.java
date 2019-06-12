@@ -79,6 +79,8 @@ public class MainViewController implements Initializable {
 
     private ScheduledExecutorService executor;
     private List<Department> depList;
+    
+    private MessageBoxHelper msgHelper = new MessageBoxHelper();
 
     /**
      * Initializes the controller class.
@@ -141,7 +143,7 @@ public class MainViewController implements Initializable {
             mModel.setDepartment(depList.get(selectedDepartment));
             tvOrders.setItems(mModel.getOrders());
         } else {
-            MessageBoxHelper.displayError("Please select your respective Department");
+            msgHelper.displayError("Please select your respective Department");
         }
     }
 
@@ -179,13 +181,13 @@ public class MainViewController implements Initializable {
     @FXML
     private void searchOrders(KeyEvent event) {
         if (combobox.getSelectionModel().getSelectedItem() == null) {
-            MessageBoxHelper.displayError("Select the right Department first.");
+            msgHelper.displayError("Select the right Department first.");
             txtFieldSearchBar.clear();
         }
         if (combobox.getSelectionModel().getSelectedItem() != null && txtFieldSearchBar.getText() != null) {
             if (!txtFieldSearchBar.getText().matches("[0.-9.]*")
                     && txtFieldSearchBar.getText().matches("^[a-zA-Z]*$")) {
-                        MessageBoxHelper.displayError("Search by Order Number.");
+                        msgHelper.displayError("Search by Order Number.");
                         txtFieldSearchBar.clear();
             } else {
                 tvOrders.setItems(mModel.searchOrders(txtFieldSearchBar.getText()));

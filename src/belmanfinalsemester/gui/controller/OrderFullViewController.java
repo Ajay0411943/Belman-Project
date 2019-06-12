@@ -7,6 +7,7 @@ package belmanfinalsemester.gui.controller;
 
 import belmanfinalsemester.be.Order;
 import belmanfinalsemester.gui.model.MainModel;
+import belmanfinalsemester.gui.util.MessageBoxHelper;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import java.net.URL;
@@ -16,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -43,6 +45,8 @@ public class OrderFullViewController implements Initializable {
     private Label lblOrderNum;
     @FXML
     private Label lblLeftDate;
+    
+    private MessageBoxHelper msgBoxHelper = new MessageBoxHelper();
 
     /**
      * Initializes the controller class.
@@ -68,5 +72,11 @@ public class OrderFullViewController implements Initializable {
     @FXML
     private void finishTask(ActionEvent event) throws SQLException {
         model.submitTask(order);
+        msgBoxHelper.askYesNo("Do you really want to submt the task?");
+        msgBoxHelper.displayInformation("Task has been submitted.");
+        Stage stage = (Stage) btnfinish.getScene().getWindow();
+        stage.close();
+        
+        
     }
 }

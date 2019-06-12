@@ -6,7 +6,7 @@ import javafx.scene.control.ButtonType;
 
 public class MessageBoxHelper {
     
-    public static boolean askYesNo(String prompt) {
+    public boolean askYesNo(String prompt) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
@@ -15,7 +15,7 @@ public class MessageBoxHelper {
         return action.get() == ButtonType.OK;
     }
     
-    public static void displayError(String errorMessage) {
+    public void displayError(String errorMessage) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
@@ -23,11 +23,19 @@ public class MessageBoxHelper {
         alert.showAndWait();
     }
     
-    public static void displayException(Exception ex) {
+    public void displayException(Exception ex) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("ERROR");
         alert.setHeaderText(null);
         alert.setContentText("An error has occurred: " + ex.getMessage());
+        alert.showAndWait();
+    }
+    
+    public void displayInformation(String message){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+         alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
         alert.showAndWait();
     }
 }
