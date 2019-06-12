@@ -64,7 +64,7 @@ public class OrderFullViewController implements Initializable {
      lblOrderNum.setText(currentOrder.getOrderNumber());
      lblStartDate.setText(currentOrder.getStartDate().toString());
      lblDeliveryDate.setText(currentOrder.getEndDate().toString());
-     lblLeftDate.setText(Integer.toString(currentOrder.getTimeLeft()));
+     lblLeftDate.setText(Long.toString(currentOrder.getDaysLeft()));
      lblCustomer.setText(currentOrder.getCustomerName());
      progressBar.setProgress(currentOrder.getProgress() );  
     }

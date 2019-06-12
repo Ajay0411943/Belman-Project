@@ -26,7 +26,7 @@ public class MockDALManager implements IDALFacade{
         o1.setOrderNumber("500-100-200-01");
         o1.setStartDate(LocalDate.now().minusDays(5));
         o1.setEndDate(LocalDate.now().plusDays(3));
-        o1.setTimeLeft(3); 
+        o1.setDaysLeft(3); 
         o1.setCustomerName("Christiano Ronaldo");
         
         
@@ -34,7 +34,7 @@ public class MockDALManager implements IDALFacade{
         o2.setOrderNumber("500-100-200-02");
         o2.setStartDate(LocalDate.now().minusDays(7));
         o2.setEndDate(LocalDate.now().plusDays(2));
-        o2.setTimeLeft(2);
+        o2.setDaysLeft(2);
         o2.setCustomerName("David Beckham");
 
          ArrayList<Order> list1 = new ArrayList();

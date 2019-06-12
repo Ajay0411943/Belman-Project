@@ -35,6 +35,8 @@ public class BLLManager implements IBLLFacade{
         for(Order o : orders){
             double progress = calculateProgress(o);
             o.setProgress(progress);
+            long daysLeft = calculateDaysleft(o);
+            o.setDaysLeft(daysLeft);
         }
         return orders;
     } 
@@ -72,5 +74,15 @@ public class BLLManager implements IBLLFacade{
     @Override
      public void submitTask(Department dep, Order order) throws SQLServerException, SQLException {
          dalFacade.submitTask(dep, order);
+     }
+     
+     public long calculateDaysleft (Order order){
+         LocalDate currentDate = LocalDate.now();
+         if(currentDate.now().isAfter(order.getEndDate())){
+            return 0;
+         }   
+            else {
+              return  ChronoUnit.DAYS.between(order.getStartDate(), LocalDate.now());
+            } 
      }
 }
