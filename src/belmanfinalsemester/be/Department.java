@@ -13,10 +13,6 @@ public class Department {
     
    private int deptID;
    private String deptName;
-   
-   public Department(){
-       
-   }
 
     public int getDeptID() {
         return deptID;

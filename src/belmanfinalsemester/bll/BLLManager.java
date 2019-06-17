@@ -7,7 +7,7 @@ package belmanfinalsemester.bll;
 
 import belmanfinalsemester.be.Department;
 import belmanfinalsemester.be.Order;
-import belmanfinalsemester.dal.IDALFacade;
+import belmanfinalsemester.dal.DALManager;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -19,24 +19,17 @@ import java.util.List;
  *
  * @author Test
  */
-public class BLLManager implements IBLLFacade{
+public class BLLManager {
     
    // MockDALManager mcDalManager = new MockDALManager();
-    private IDALFacade dalFacade;
+    DALManager dalManager = new DALManager();
     
-    public BLLManager(IDALFacade dalFacade){
-        this.dalFacade = dalFacade;
-    }
-    
-    @Override
     public List<Order> getOrders (Department departmentName){
         LocalDate currentDate = LocalDate.now();
-        List<Order> orders =  dalFacade.getOrders(departmentName,currentDate);
+        List<Order> orders =  dalManager.getOrders(departmentName,currentDate);
         for(Order o : orders){
             double progress = calculateProgress(o);
             o.setProgress(progress);
-            long daysLeft = calculateDaysleft(o);
-            o.setDaysLeft(daysLeft);
         }
         return orders;
     } 
@@ -55,7 +48,6 @@ public class BLLManager implements IBLLFacade{
         }
     }
     
-    @Override
     public List<Order> searchOrders(List<Order> allOrders, String key){
         List<Order> filteredList = new ArrayList();
         for(Order order: allOrders){
@@ -66,23 +58,11 @@ public class BLLManager implements IBLLFacade{
         return filteredList;
     }
     
-    @Override
     public List<Department> getDepartments() throws SQLException{
-        return dalFacade.getDepartments();
+        return dalManager.getDepartments();
     }
     
-    @Override
      public void submitTask(Department dep, Order order) throws SQLServerException, SQLException {
-         dalFacade.submitTask(dep, order);
-     }
-     
-     public long calculateDaysleft (Order order){
-         LocalDate currentDate = LocalDate.now();
-         if(currentDate.now().isAfter(order.getEndDate())){
-            return 0;
-         }   
-            else {
-              return  ChronoUnit.DAYS.between(order.getStartDate(), LocalDate.now());
-            } 
+         dalManager.submitTask(dep, order, LocalDate.now());
      }
 }

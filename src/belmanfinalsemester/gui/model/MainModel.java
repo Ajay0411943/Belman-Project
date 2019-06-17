@@ -7,8 +7,7 @@ package belmanfinalsemester.gui.model;
 
 import belmanfinalsemester.be.Department;
 import belmanfinalsemester.be.Order;
-import belmanfinalsemester.bll.BLLFacadeFactory;
-import belmanfinalsemester.bll.IBLLFacade;
+import belmanfinalsemester.bll.BLLManager;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
 import java.util.List;
@@ -23,14 +22,13 @@ import javafx.collections.ObservableList;
  * @author Test
  */
 public class MainModel {
-    private IBLLFacade facade;
+    private BLLManager facade = new BLLManager();
     private Department selectedDepartment;
     private ObservableList<Order> obList = FXCollections.observableArrayList();
     private ObservableList<Order> filteredList = FXCollections.observableArrayList();
     
     public MainModel()
     {
-        facade = BLLFacadeFactory.getInstance().createFacade(BLLFacadeFactory.FacadeType.PRODUCTION);
         runOrderObserver();
     }
     

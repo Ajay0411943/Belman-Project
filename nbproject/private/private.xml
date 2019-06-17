@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/kulsoom-Abbas/Desktop/Belman%20Project%20final%20exam/Belman-Project/src/belmanfinalsemester/gui/controller/MainViewController.java</file>
-            <file>file:/C:/Users/kulsoom-Abbas/Desktop/Belman%20Project%20final%20exam/Belman-Project/src/belmanfinalsemester/dal/DALManager.java</file>
-            <file>file:/C:/Users/kulsoom-Abbas/Desktop/Belman%20Project%20final%20exam/Belman-Project/src/belmanfinalsemester/dal/DAO/OrderDAO.java</file>
+            <file>file:/C:/Users/Test/Desktop/Belman%20project%20semester%202/Belman-Project/src/belmanfinalsemester/bll/BLLManager.java</file>
+            <file>file:/C:/Users/Test/Desktop/Belman%20project%20semester%202/Belman-Project/src/belmanfinalsemester/gui/model/MainModel.java</file>
+            <file>file:/C:/Users/Test/Desktop/Belman%20project%20semester%202/Belman-Project/src/belmanfinalsemester/gui/controller/OrderFullViewController.java</file>
+            <file>file:/C:/Users/Test/Desktop/Belman%20project%20semester%202/Belman-Project/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>

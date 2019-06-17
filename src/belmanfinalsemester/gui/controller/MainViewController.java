@@ -79,8 +79,6 @@ public class MainViewController implements Initializable {
 
     private ScheduledExecutorService executor;
     private List<Department> depList;
-    
-    private MessageBoxHelper msgHelper = new MessageBoxHelper();
 
     /**
      * Initializes the controller class.
@@ -131,7 +129,7 @@ public class MainViewController implements Initializable {
         clmOrderNum.setCellValueFactory(new PropertyValueFactory("orderNumber"));
         clmStartDate.setCellValueFactory(new PropertyValueFactory("startDate"));
         clmEndDate.setCellValueFactory(new PropertyValueFactory("endDate"));
-        clmTimeLeft.setCellValueFactory(new PropertyValueFactory("daysLeft"));
+        clmTimeLeft.setCellValueFactory(new PropertyValueFactory("timeLeft"));
 
     }
 
@@ -143,8 +141,7 @@ public class MainViewController implements Initializable {
             mModel.setDepartment(depList.get(selectedDepartment));
             tvOrders.setItems(mModel.getOrders());
         } else {
-//            msgHelper.displayError("Please select your respective Department");
-            throw new BelmanException("Cannot find the right department");
+            MessageBoxHelper.displayError("Please select your respective Department");
         }
     }
 
@@ -154,7 +151,7 @@ public class MainViewController implements Initializable {
         if (event.getClickCount() == 2) {
 
             try {
-                Parent root;  //FXMLLoader.load(getClass().getResource("/belmanfinalsemester/gui/view/OrderFullView.fxml"));
+                Parent root;  
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                         .getResource("/belmanfinalsemester/gui/view/OrderFullView.fxml"));
                 root = (Parent) fxmlLoader.load();
@@ -182,14 +179,14 @@ public class MainViewController implements Initializable {
     @FXML
     private void searchOrders(KeyEvent event) {
         if (combobox.getSelectionModel().getSelectedItem() == null) {
-            msgHelper.displayError("Select the right Department first.");
+            MessageBoxHelper.displayError("Please select the right Department first.");
             txtFieldSearchBar.clear();
         }
         if (combobox.getSelectionModel().getSelectedItem() != null && txtFieldSearchBar.getText() != null) {
             if (!txtFieldSearchBar.getText().matches("[0.-9.]*")
                     && txtFieldSearchBar.getText().matches("^[a-zA-Z]*$")) {
-                        msgHelper.displayError("Search by Order Number.");
-                        txtFieldSearchBar.clear();
+                MessageBoxHelper.displayError("Search by Order Number.");
+                txtFieldSearchBar.clear();
             } else {
                 tvOrders.setItems(mModel.searchOrders(txtFieldSearchBar.getText()));
             }

@@ -28,9 +28,12 @@ public class OrderFullViewController implements Initializable {
     
     private MainModel model;
     private Order order;
+    private MessageBoxHelper msgBoxHelper;
 
     @FXML
     private JFXProgressBar progressBar;
+    @FXML
+    private Label lblEmployees;
     @FXML
     private JFXButton btnfinish;
     @FXML
@@ -43,8 +46,6 @@ public class OrderFullViewController implements Initializable {
     private Label lblOrderNum;
     @FXML
     private Label lblLeftDate;
-    
-    private MessageBoxHelper msgBoxHelper = new MessageBoxHelper();
 
     /**
      * Initializes the controller class.
@@ -62,17 +63,20 @@ public class OrderFullViewController implements Initializable {
      lblOrderNum.setText(currentOrder.getOrderNumber());
      lblStartDate.setText(currentOrder.getStartDate().toString());
      lblDeliveryDate.setText(currentOrder.getEndDate().toString());
-     lblLeftDate.setText(Long.toString(currentOrder.getDaysLeft()));
+     lblLeftDate.setText(Integer.toString(currentOrder.getTimeLeft()));
      lblCustomer.setText(currentOrder.getCustomerName());
-     progressBar.setProgress(currentOrder.getProgress() );  
+     progressBar.setProgress(currentOrder.getProgress() );
+    
     }
 
     @FXML
     private void finishTask(ActionEvent event) throws SQLException {
+        if(msgBoxHelper.askYesNo("Do you really want to submit the task?")){
         model.submitTask(order);
-        msgBoxHelper.askYesNo("Do you really want to submt the task?");
         msgBoxHelper.displayInformation("Task has been submitted.");
         Stage stage = (Stage) btnfinish.getScene().getWindow();
-        stage.close();   
+        stage.close();
+        }
+        
     }
 }

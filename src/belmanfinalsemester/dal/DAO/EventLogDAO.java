@@ -35,10 +35,11 @@ public void logEvent(Order order , Department dep , String logData , LocalDate c
             stmt.setString(3, logData);
             stmt.setDate(4, java.sql.Date.valueOf(currentDate));
             stmt.execute();
-   } catch (SQLException ex){
+   } 
+    catch (SQLException ex){
        ex.printStackTrace();
-   }
-}
+        }
+    }
 }   
 
     

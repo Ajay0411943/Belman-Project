@@ -18,7 +18,7 @@ public class Order {
     private String customerName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private long daysLeft;
+    private int timeLeft;
     private double progress;
     
 
@@ -64,12 +64,12 @@ public class Order {
         this.endDate = endDate;
     }
 
-    public long getDaysLeft() {
-        return daysLeft;
+    public int getTimeLeft() {
+        return timeLeft;
     }
 
-    public void setDaysLeft(long timeLeft) {
-        this.daysLeft = timeLeft;
+    public void setTimeLeft(int timeLeft) {
+        this.timeLeft = timeLeft;
     }
 
     public double getProgress() {

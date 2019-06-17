@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author MockDALManager
  */
-public class DALManager implements IDALFacade{
+public class DALManager {
 
     private List<Order> orderInfo;
     private OrderDAO orderDAO;
@@ -40,21 +40,23 @@ public class DALManager implements IDALFacade{
         }
     }
 
-    @Override
+    public List<Order> getAllOrders(Department departmentName, LocalDate currentDate) {
+
+        List<Order> currentOrders = orderDAO.getAllOrdersFromDept(departmentName, currentDate);
+        return currentOrders;
+    }
+
     public List<Department> getDepartments() throws SQLException {
         return depDAO.getDepartment();
     }
 
-    @Override
     public List<Order> getOrders(Department departmentName, LocalDate currentDate) {
         List<Order> currentOrders = orderDAO.getOrders(departmentName, currentDate);
         return currentOrders;
     }
     
-    @Override
-     public void submitTask(Department dep, Order order) throws SQLServerException, SQLException {
+     public void submitTask(Department dep, Order order, LocalDate currentDate) throws SQLServerException, SQLException {
          orderDAO.submitTask(dep, order);
-         LocalDate currentDate = LocalDate.now();
          logEvent(order, dep, "Task submitted", currentDate);
      }
      
@@ -66,4 +68,7 @@ public class DALManager implements IDALFacade{
             Logger.getLogger(DALManager.class.getName()).log(Level.SEVERE, null, ex);
         }
      }
-}
+     
+     
+     }
+

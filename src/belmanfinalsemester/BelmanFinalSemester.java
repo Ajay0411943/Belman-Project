@@ -34,6 +34,8 @@ public class BelmanFinalSemester extends Application {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
+//        JSONReader jr = new JSONReader();
+//        jr.readJsonFile();
         launch(args);
     }
     
