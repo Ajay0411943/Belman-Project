@@ -99,7 +99,6 @@ public class JSONReader {
     }
 
     private String reformatDate(String dateString) {
-
         String replaceString = dateString.replace("/", "");
         replaceString = replaceString.replace("Date(", "");
         replaceString = replaceString.replace("+0200)", "");

@@ -143,7 +143,8 @@ public class MainViewController implements Initializable {
             mModel.setDepartment(depList.get(selectedDepartment));
             tvOrders.setItems(mModel.getOrders());
         } else {
-            msgHelper.displayError("Please select your respective Department");
+//            msgHelper.displayError("Please select your respective Department");
+            throw new BelmanException("Cannot find the right department");
         }
     }
 

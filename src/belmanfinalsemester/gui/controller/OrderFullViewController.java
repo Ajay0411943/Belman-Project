@@ -32,8 +32,6 @@ public class OrderFullViewController implements Initializable {
     @FXML
     private JFXProgressBar progressBar;
     @FXML
-    private Label lblEmployees;
-    @FXML
     private JFXButton btnfinish;
     @FXML
     private Label lblStartDate;
@@ -75,8 +73,6 @@ public class OrderFullViewController implements Initializable {
         msgBoxHelper.askYesNo("Do you really want to submt the task?");
         msgBoxHelper.displayInformation("Task has been submitted.");
         Stage stage = (Stage) btnfinish.getScene().getWindow();
-        stage.close();
-        
-        
+        stage.close();   
     }
 }
