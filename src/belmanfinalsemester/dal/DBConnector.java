@@ -24,7 +24,7 @@ public class DBConnector {
     {
         try
         {
-            Properties databaseProperties = new Properties();
+            Properties databaseProperties = new Properties();    //class
             databaseProperties.load(new FileInputStream("src/resources/data/database.properties"));
             ds = new SQLServerDataSource();
             ds.setServerName(databaseProperties.getProperty("Server"));
