@@ -42,7 +42,7 @@ public class DALManager {
 
     public List<Order> getAllOrders(Department departmentName, LocalDate currentDate) {
 
-        List<Order> currentOrders = orderDAO.getAllOrdersFromDept(departmentName, currentDate);
+        List<Order> currentOrders = orderDAO.getOrders(departmentName, currentDate);
         return currentOrders;
     }
 

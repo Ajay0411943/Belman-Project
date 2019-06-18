@@ -85,8 +85,7 @@ public class MainViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initializeComboBox();
-        setDateAndTime();
+        initializeComboBox();      
         executor = Executors.newScheduledThreadPool(2);
         executor.scheduleAtFixedRate(() -> initializeThreading(), 0, 1, TimeUnit.SECONDS);
         //loadTableViewFXML();
